@@ -28,6 +28,7 @@ const Store = (function(){
     addBookmark,
     deleteBookmark,
     isClicked,
+    updateBookmark,
   };
 
 }());

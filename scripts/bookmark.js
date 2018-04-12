@@ -13,7 +13,7 @@ const Bookmark = (function(){
         <div class="hidden-area ${hidden}">
           <form class="change-desc">
             <label for="description">Description:</label>
-            <textarea name="description" id="create-desc" cols="30" rows="10"></textarea>
+            <textarea name="description" id="create-desc" cols="30" rows="10">${bookmark.desc}</textarea>
             <button type="submit">Change Description</button>
           </form>
           <a href="${bookmark.url}"><button type="button">Visit</button></a>
@@ -99,7 +99,20 @@ const Bookmark = (function(){
   const editBookmarkDesc = function(){
     $('#result').on('submit', '.change-desc', e => {
       e.preventDefault();
-      console.log($(e.target).find('#create-desc'));
+
+      let id = $(e.target).closest('.bookmark-card').data('id');
+      let desc = $(e.target).find('#create-desc').val();
+      
+      let data = {
+        desc,
+      };
+      
+      Api.updateBookmark(id, data, response => {
+        Store.updateBookmark(id, data);
+        render();
+      });
+
+      //console.log(id);
     });
   };
 
