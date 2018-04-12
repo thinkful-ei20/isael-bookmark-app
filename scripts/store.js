@@ -1,6 +1,7 @@
 'use strict';
 const Store = (function(){
-  
+  const errorMessage = '';
+
   const store = [];
 
   const addBookmark = function(bookmark){
@@ -36,13 +37,19 @@ const Store = (function(){
     }
   };
 
+  const setError = function(error){
+    this.errorMessage = error;
+  };
+
   return {
     store,
     addBookmark,
     deleteBookmark,
     isClicked,
     updateBookmark,
-    sortBookmarks
+    sortBookmarks,
+    errorMessage,
+    setError,
   };
 
 }());

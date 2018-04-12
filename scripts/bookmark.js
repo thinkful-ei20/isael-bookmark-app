@@ -48,9 +48,13 @@ const Bookmark = (function(){
     return bookmarks;
   };
 
+  const generateErrMsg = function(message){
+    return `<button type="button" class="error-button">${message}</button>`;
+  };
+
   const render = function(){
     let bookmarks = Store.store;
-
+    Store.errorMessage !== '' ? $('#error').html(generateErrMsg(Store.errorMessage)) : '';
     let html = generateBookmarks(bookmarks);
 
     $('#result').html(html);
@@ -91,6 +95,9 @@ const Bookmark = (function(){
       Api.addBookmark(data, response => {
         Store.addBookmark(response);
         render();
+      }, error => {
+        Store.setError(error.responseJSON.message);
+        render();
       });
     });
   };
@@ -101,6 +108,9 @@ const Bookmark = (function(){
 
       Api.deleteBookmark(id, response => {
         Store.deleteBookmark(id);
+        render();
+      }, error => {
+        Store.setError(error.responseJSON.message);
         render();
       });
 
@@ -121,6 +131,9 @@ const Bookmark = (function(){
       
       Api.updateBookmark(id, data, response => {
         Store.updateBookmark(id, data);
+        render();
+      }, error => {
+        Store.setError(error.responseJSON.message);
         render();
       });
 
@@ -149,6 +162,9 @@ const Bookmark = (function(){
 
       Api.updateBookmark(id, data, response => {
         Store.updateBookmark(id, data);
+        render();
+      }, error => {
+        Store.setError(error.responseJSON.message);
         render();
       });
 
