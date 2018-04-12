@@ -5,12 +5,10 @@ const Bookmark = (function(){
     let html = [];
 
     for(let i = 1; i <= val; i++){
-      html.push(`<button class="${rating >= i ? 'rated' : 'unrated'}" data-val="${i}"></button>`)
+      html.push(`<button class="circles ${rating >= i ? 'rated' : 'unrated'}" data-val="${i}"></button>`);
     }
 
     return html.join('');
-    console.log(val);
-
   };
 
 
@@ -140,6 +138,24 @@ const Bookmark = (function(){
     });
   };
 
+  const bookmarkRatingListener = function(){
+    $('#result').on('click', '.circles', e => {
+      let rating = $(e.target).data('val');
+      let id = $(e.target).closest('.bookmark-card').data('id');
+      
+      let data = {
+        rating,
+      };
+
+      Api.updateBookmark(id, data, response => {
+        Store.updateBookmark(id, data);
+        render();
+      });
+
+      //console.log(id);
+    });
+  };
+
   const bindFunc = function(){
     initialize();
     createBookmarkListener();
@@ -147,6 +163,7 @@ const Bookmark = (function(){
     bookmarkClickGrow();
     editBookmarkDesc();
     bookmarkSortListener();
+    bookmarkRatingListener();
   };
 
   return {
