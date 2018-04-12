@@ -16,9 +16,19 @@ const Api = (function(){
   //Api.getBookmarks(response => response.forEach(item => Store.addBookmark(item)));
 
   const addBookmark = function(dataObj, callback){
-    
-  };
+    let data = JSON.stringify(dataObj);
 
+    const options = {
+      url: URL,
+      method: 'POST',
+      contentType: 'application/json',
+      data: data,
+      success: callback 
+    };
+
+    $.ajax(options);
+  };
+  //Api.addBookmark({title: 'isaellizama', url: 'https://isaellizama.com'}, response => console.log(response));
   const updateBookmark = function(id, dataObj, callback){
 
   };
@@ -31,6 +41,7 @@ const Api = (function(){
     getBookmarks,
     updateBookmark,
     deleteBookmark,
+    addBookmark,
   };
 
 }());
