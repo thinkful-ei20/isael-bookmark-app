@@ -1,0 +1,23 @@
+section{
+  width: 40%;
+  margin: 25px auto;
+}
+
+input{
+  display: block;
+}
+
+textarea{
+  resize: none;
+}
+
+label{
+  display: block;
+}
+.bookmark-card{
+  border: 1px solid;
+  margin: 25px auto;
+}
+#create{
+  border: 1px solid;
+}
