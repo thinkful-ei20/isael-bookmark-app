@@ -52,9 +52,20 @@ const Bookmark = (function(){
     return `<button type="button" class="error-button">${message}</button>`;
   };
 
+  const handleErrMsg = function(){
+    $('#error').on('click', '.error-button', e => {
+      //console.log(e.target);
+      Store.setError('');
+      //console.log(Store.errorMessage);
+      render();
+    });
+  };
+
   const render = function(){
     let bookmarks = Store.store;
-    Store.errorMessage !== '' ? $('#error').html(generateErrMsg(Store.errorMessage)) : '';
+
+    Store.errorMessage !== '' ? $('#error').html(generateErrMsg(Store.errorMessage)) : $('#error').html('');
+
     let html = generateBookmarks(bookmarks);
 
     $('#result').html(html);
@@ -180,6 +191,7 @@ const Bookmark = (function(){
     editBookmarkDesc();
     bookmarkSortListener();
     bookmarkRatingListener();
+    handleErrMsg();
   };
 
   return {
