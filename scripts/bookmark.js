@@ -21,7 +21,7 @@ const Bookmark = (function(){
 
     return `
       <div class="bookmark-card" data-id="${bookmark.id}">
-        <h3>Title: ${bookmark.title}<h3>
+        <h3>Title: ${bookmark.title}</h3>
         <section class="rating-section">${circles}</section>
         <button class="view-more">Click to view More</button>
         <div class="hidden-area ${hidden}">
@@ -30,8 +30,10 @@ const Bookmark = (function(){
             <textarea name="description" id="create-desc" cols="30" rows="10">${desc}</textarea>
             <button type="submit">Change Description</button>
           </form>
-          <a href="${bookmark.url}"><button type="button">Visit</button></a>
+          <section class="test">
+          <a href="${bookmark.url}"><button type="button">Visit Link</button></a>
           <button class="delete">Delete ${bookmark.title}</button>
+          </section>
         </div>
       </div>
     `;
