@@ -4,16 +4,31 @@ const Bookmark = (function(){
   const genereatehtmlString = function(bookmark){
     let rating = bookmark.rating === null ? 1 : bookmark.rating;
     let desc = bookmark.desc === null ? `describe ${bookmark.title}` : bookmark.desc;
+    let hidden = bookmark.isClicked === true ? '' : 'hidden';
     return `
       <div class="bookmark-card" data-id="${bookmark.id}">
         <h3>Title: ${bookmark.title}<h3>
         <h3>${rating}</h3>
-        
-        <p>${desc}</p>
-        <a href="${bookmark.url}"><button type="button">Visit</button></a>
-        <button class="delete">Delete ${bookmark.title}</button>
+        <button class="view-more">Click to view More</button>
+        <div class="hidden-area ${hidden}">
+          <form class="change-desc">
+            <label for="description">Description:</label>
+            <textarea name="description" id="create-desc" cols="30" rows="10"></textarea>
+            <button type="submit">Change Description</button>
+          </form>
+          <a href="${bookmark.url}"><button type="button">Visit</button></a>
+          <button class="delete">Delete ${bookmark.title}</button>
+        </div>
       </div>
     `;
+  };
+
+  const bookmarkClickGrow = function(){
+    $('#result').on('click', '.view-more', e => {
+      let id = $(e.target).closest('.bookmark-card').data('id');
+      Store.isClicked(id);
+      render();
+    });
   };
 
   const generateBookmarks = function(arr){
@@ -81,10 +96,19 @@ const Bookmark = (function(){
     });
   };
 
+  const editBookmarkDesc = function(){
+    $('#result').on('submit', '.change-desc', e => {
+      e.preventDefault();
+      console.log($(e.target).find('#create-desc'));
+    });
+  };
+
   const bindFunc = function(){
     initialize();
     createBookmarkListener();
     deleteBookmarkListener();
+    bookmarkClickGrow();
+    editBookmarkDesc();
   };
 
   return {
