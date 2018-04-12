@@ -28,6 +28,7 @@ const Api = (function(){
 
     $.ajax(options);
   };
+
   //Api.addBookmark({title: 'isaellizama', url: 'https://isaellizama.com'}, response => console.log(response));
   const updateBookmark = function(id, dataObj, callback){
     let data = JSON.stringify(dataObj);
@@ -43,8 +44,15 @@ const Api = (function(){
     $.ajax(options);
   };
   //Api.updateBookmark("cjfwqnvq9000y0kz5rd7tx988", {rating: 2, desc: "hello"}, response => console.log(response));
-  const deleteBookmark = function(id, callback){
 
+  const deleteBookmark = function(id, callback){
+    const options = {
+      url: `${URL}/${id}`,
+      method: 'DELETE',
+      contentType: 'application/json',
+      success: callback,
+    };
+    $.ajax(options);
   };
 
   return {

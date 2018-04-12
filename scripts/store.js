@@ -12,12 +12,13 @@ const Store = (function(){
   };
 
   const updateBookmark = function(id, dataObj){
-
+    
   };
 
   return {
     store,
     addBookmark,
+    deleteBookmark,
   };
 
 }());
