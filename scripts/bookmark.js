@@ -1,14 +1,28 @@
 'use strict';
 const Bookmark = (function(){
   
+  const generateCirclesFill = function(val,rating){
+    let html = [];
+
+    for(let i = 1; i <= val; i++){
+      html.push(`<button class="${rating >= i ? 'rated' : 'unrated'}" data-val="${i}"></button>`)
+    }
+
+    return html.join('');
+    console.log(val);
+
+  };
+
+
   const genereatehtmlString = function(bookmark){
     let rating = bookmark.rating === null ? 1 : bookmark.rating;
     let desc = bookmark.desc === null ? `describe ${bookmark.title}` : bookmark.desc;
     let hidden = bookmark.isClicked === true ? '' : 'hidden';
+    let circles = generateCirclesFill(5,rating);
     return `
       <div class="bookmark-card" data-id="${bookmark.id}">
         <h3>Title: ${bookmark.title}<h3>
-        <h3>${rating}</h3>
+        <section class="rating-section">${circles}</section>
         <button class="view-more">Click to view More</button>
         <div class="hidden-area ${hidden}">
           <form class="change-desc">
@@ -116,12 +130,23 @@ const Bookmark = (function(){
     });
   };
 
+  const bookmarkSortListener = function(){
+    $('#sort-bookmark').change(e => {
+      let val = $('#sort-bookmark').val();
+      
+      Store.sortBookmarks(val);
+
+      $('#sort-bookmark').val('sort');
+    });
+  };
+
   const bindFunc = function(){
     initialize();
     createBookmarkListener();
     deleteBookmarkListener();
     bookmarkClickGrow();
     editBookmarkDesc();
+    bookmarkSortListener();
   };
 
   return {

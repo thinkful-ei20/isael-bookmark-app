@@ -23,12 +23,26 @@ const Store = (function(){
     });
   };
 
+  const sortBookmarks = function(val){
+    if(val === 'minimum'){
+      this.store.sort((a , b) => a.rating - b.rating);
+      //console.log(this.store);
+      Bookmark.render();
+    } 
+    if(val === 'maximum') {
+      this.store.sort((a, b) => b.rating - a.rating);
+      //console.log(this.store);
+      Bookmark.render();
+    }
+  };
+
   return {
     store,
     addBookmark,
     deleteBookmark,
     isClicked,
     updateBookmark,
+    sortBookmarks
   };
 
 }());
