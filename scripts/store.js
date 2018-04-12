@@ -8,11 +8,11 @@ const Store = (function(){
   };
 
   const deleteBookmark = function(id){
-    this.store = this.store.filter(bookmark => id !== bookmark);
+    this.store = this.store.filter(bookmark => id !== bookmark.id);
   };
 
   const updateBookmark = function(id, dataObj){
-    
+
   };
 
   return {

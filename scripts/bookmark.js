@@ -2,9 +2,16 @@
 const Bookmark = (function(){
   
   const genereatehtmlString = function(bookmark){
+    let rating = bookmark.rating === null ? 1 : bookmark.rating;
+    let desc = bookmark.desc === null ? `describe ${bookmark.title}` : bookmark.desc;
     return `
-      <div>
-      
+      <div class="bookmark-card" data-id="${bookmark.id}">
+        <h3>Title: ${bookmark.title}<h3>
+        <h3>${rating}</h3>
+        
+        <p>${desc}</p>
+        <a href="${bookmark.url}"><button type="button">Visit</button></a>
+        <button class="delete">Delete ${bookmark.title}</button>
       </div>
     `;
   };
@@ -61,9 +68,23 @@ const Bookmark = (function(){
     });
   };
 
+  const deleteBookmarkListener = function(){
+    $('#result').on('click', '.delete', e => {
+      let id = $(e.target).closest('.bookmark-card').data('id');
+
+      Api.deleteBookmark(id, response => {
+        Store.deleteBookmark(id);
+        render();
+      });
+
+      //console.log(id);
+    });
+  };
+
   const bindFunc = function(){
     initialize();
     createBookmarkListener();
+    deleteBookmarkListener();
   };
 
   return {
