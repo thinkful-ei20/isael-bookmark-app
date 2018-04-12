@@ -11,6 +11,10 @@ const Store = (function(){
     this.store = this.store.filter(bookmark => id !== bookmark);
   };
 
+  const updateBookmark = function(id, dataObj){
+
+  };
+
   return {
     store,
     addBookmark,
