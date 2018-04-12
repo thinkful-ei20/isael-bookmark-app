@@ -1,4 +1,5 @@
 'use strict';
+/*global Store, Api*/ 
 const Bookmark = (function(){
   
   const generateCirclesFill = function(val,rating){
@@ -14,9 +15,10 @@ const Bookmark = (function(){
 
   const genereatehtmlString = function(bookmark){
     let rating = bookmark.rating === null ? 1 : bookmark.rating;
-    let desc = bookmark.desc === null ? `describe ${bookmark.title}` : bookmark.desc;
+    let desc = bookmark.desc === '' ? `describe ${bookmark.title}` : bookmark.desc;
     let hidden = bookmark.isClicked === true ? '' : 'hidden';
     let circles = generateCirclesFill(5,rating);
+
     return `
       <div class="bookmark-card" data-id="${bookmark.id}">
         <h3>Title: ${bookmark.title}<h3>
@@ -25,7 +27,7 @@ const Bookmark = (function(){
         <div class="hidden-area ${hidden}">
           <form class="change-desc">
             <label for="description">Description:</label>
-            <textarea name="description" id="create-desc" cols="30" rows="10">${bookmark.desc}</textarea>
+            <textarea name="description" id="create-desc" cols="30" rows="10">${desc}</textarea>
             <button type="submit">Change Description</button>
           </form>
           <a href="${bookmark.url}"><button type="button">Visit</button></a>

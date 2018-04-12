@@ -1,4 +1,5 @@
 'use strict';
+/*global Bookmark*/ 
 const Store = (function(){
   const errorMessage = '';
 
