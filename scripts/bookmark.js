@@ -6,18 +6,23 @@ const Bookmark = (function(){
     let html = [];
 
     for(let i = 1; i <= val; i++){
-      html.push(`<button type="button" class="circles ${rating >= i ? 'rated' : 'unrated'}" data-val="${i}"></button>`);
+      //adds the class rated to the buttons with the value below or equal to the rating, and unrated to the buttons with a higher value
+      html.push(`<button type="button" class="circles ${rating >= i ? 'rated' : 'unrated'}" data-val="${i}" aria-label="${i} stars rating"></button>`); 
     }
 
     return html.join('');
   };
 
 
-  const genereatehtmlString = function(bookmark){
+  const genereatehtmlString = function(bookmark){ 
+    //if rating is empty it gives it a default value if its not it sets its normal value
     let rating = bookmark.rating === null ? 1 : bookmark.rating;
+    //if desc is empty it gives it a default value if its not it sets its normal value
     let desc = bookmark.desc === '' ? `describe ${bookmark.title}` : bookmark.desc;
+    //if bookmark.isClicked is equal to  true it sets it to an empty string if not it setst the string to hidden
     let hidden = bookmark.isClicked === true ? '' : 'hidden';
     let circles = generateCirclesFill(5,rating);
+    //if bookmark.isClicked is equal to  true it sets moreLess the string of Less if its not it sets it to More
     let moreLess = bookmark.isClicked === true ? 'Less' : 'More';
 
     return `
@@ -28,10 +33,10 @@ const Bookmark = (function(){
         <section role="region" class="hidden-area ${hidden}">
           <form class="change-desc">
             <label for="description">Description:</label>
-            <textarea name="description" id="create-desc" cols="30" rows="10">${desc}</textarea>
+            <textarea name="description" class="create-desc" cols="30" rows="10">${desc}</textarea>
             <button type="submit">Change Description</button>
           </form>
-          <section role="region" class="test">
+          <section role="region" class="bottom-buttons">
           <a href="${bookmark.url}"><button type="button">Visit Link</button></a>
           <button class="delete" type="button">Delete ${bookmark.title}</button>
           </section>
@@ -42,6 +47,7 @@ const Bookmark = (function(){
 
   const bookmarkClickGrow = function(){
     $('#result').on('click', '.view-more', e => {
+      //grabs the id of the closest bookmark-card
       let id = $(e.target).closest('.bookmark-card').data('id');
       Store.isClicked(id);
       render();
@@ -68,7 +74,8 @@ const Bookmark = (function(){
 
   const render = function(){
     let bookmarks = Store.store;
-
+    //if  Store.errorMessage is not empty it will run generateErrMsg and set the html of #error to the value
+    //if Store.errorMessage is empty it will set #error value to an empty string
     Store.errorMessage !== '' ? $('#error').html(generateErrMsg(Store.errorMessage)) : $('#error').html('');
 
     let html = generateBookmarks(bookmarks);
@@ -78,6 +85,7 @@ const Bookmark = (function(){
 
   const initialize = function(){
     Api.getBookmarks(response => {
+      //loops throught the response and add each element with the Store.addBookmark method
       response.forEach(bookmark => Store.addBookmark(bookmark));
       render();
     });
@@ -86,7 +94,7 @@ const Bookmark = (function(){
   const valReset = function(){
     $('#create-title').val('');
     $('#create-url').val('https://');
-    $('#create-desc').val('');
+    $('.create-desc').val('');
     $('#create-rating').val('');
   };
 
@@ -96,7 +104,7 @@ const Bookmark = (function(){
       
       let title = $('#create-title').val();
       let url = $('#create-url').val();
-      let desc = $('#create-desc').val() === undefined ? '' :  $('#create-desc').val();
+      let desc = $('.create-desc').val() === undefined ? '' :  $('.create-desc').val();
       let rating = $('#create-rating').val() === '' ? 1 : $('#create-rating').val();
 
       const data = {
@@ -139,7 +147,7 @@ const Bookmark = (function(){
       e.preventDefault();
 
       let id = $(e.target).closest('.bookmark-card').data('id');
-      let desc = $(e.target).find('#create-desc').val();
+      let desc = $(e.target).find('.create-desc').val();
       
       let data = {
         desc,
@@ -158,7 +166,7 @@ const Bookmark = (function(){
   };
 
   const bookmarkSortListener = function(){
-    $('#sort-bookmark').change(e => {
+    $('#sort-bookmark').change(() => {
       let val = $('#sort-bookmark').val();
       
       Store.sortBookmarks(val);

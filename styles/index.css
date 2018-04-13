@@ -175,13 +175,13 @@ select{
   font-size: 18px;
   padding: 6px;
 }
-.test{
+.bottom-buttons{
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
-.test button{
+.bottom-buttons button{
   font-size: 18px;
   background-color: #f2f2f2;
   border: 1px solid #f2f2f2;
@@ -191,7 +191,7 @@ select{
   padding: 8px;
 }
 
-.test button:nth-child(2){
+.bottom-buttons button:nth-child(2){
   font-size: 18px;
   background-color: #f2f2f2;
   border: 1px solid #f2f2f2;
@@ -201,14 +201,14 @@ select{
   padding: 8px;
 }
 
-.test button:hover{
+.bottom-buttons button:hover{
   background-color: #28a745;
   color: white;
   border: 1px solid #f2f2f2;
   transition: 200ms;
 }
 
-.test button:nth-child(2):hover{
+.bottom-buttons button:nth-child(2):hover{
   background-color: #dc3545;
   color: white;
   border: 1px solid #f2f2f2;

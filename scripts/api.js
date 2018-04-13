@@ -34,7 +34,7 @@ const Api = (function(){
   //Api.addBookmark({title: 'isaellizama', url: 'https://isaellizama.com'}, response => console.log(response));
   const updateBookmark = function(id, dataObj, callback, error){
     let data = JSON.stringify(dataObj);
-
+    
     const options ={
       url: `${URL}/${id}`,
       method: 'PATCH',

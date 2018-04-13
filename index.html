@@ -10,7 +10,7 @@
 <body>
   <header role="banner">
     <h1>Bookmark App</h1>
-    <section id="error"></section>
+    <section id="error" aria-live="assertive"></section>
   </header>
   <main role="main">
     <section id="create" role="region">
@@ -18,25 +18,25 @@
         <fieldset name="bookmark-info">
             <legend>Create Bookmark</legend>
             <label for="title">Title:</label>
-            <input type="text" name="title" id="create-title" required>
+            <input aria-label="title" type="text" name="title" id="create-title" required>
             <label for="url">Url:</label>
-            <input type="text" name="url" id="create-url" placeholder="url" value="https://" required>
+            <input aria-label="url" type="text" name="url" id="create-url" placeholder="url" value="https://" required>
             <label for="description">Description:</label>
-            <textarea name="description" id="create-desc" cols="30" rows="10"></textarea>
+            <textarea aria-label="description-text-area" name="description" class="create-desc" cols="30" rows="10"></textarea>
             <label for="rating">Rating:</label>
-            <input type="number" name="rating" id="create-rating" placeholder="1-5">
+            <input aria-label="rating" type="number" name="rating" id="create-rating" placeholder="1-5">
         </fieldset>
         <button type="submit">Create</button>
       </form>
     </section>
     <section role="region" id="sort">
-      <select name="sort" id="sort-bookmark">
-          <option value="sort">sort</option>
-          <option value="minimum">Minimum Rating</option>
-          <option value="maximum">Maximum Rating</option>
+      <select aria-label="sort-select" name="sort" id="sort-bookmark">
+          <option aria-label="sort" value="sort">sort</option>
+          <option aria-label="minimum" value="minimum">Minimum Rating</option>
+          <option aria-label="maximum" value="maximum">Maximum Rating</option>
       </select>
     </section>
-    <section id="result" role="region">
+    <section id="result" role="region" aria-live="polite">
 
     </section>
 </main>
