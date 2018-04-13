@@ -29,7 +29,7 @@ header h1{
 }
 
 #result {
-  width: 50%;
+  width: 70%;
   margin: auto;
 }
 
@@ -208,5 +208,29 @@ select{
 #sort{
   display: block;
   margin: 35px auto;
-  width: 50%;
+  width: 70%;
+}
+
+@media only screen and (max-width: 768px) {
+  #result{
+    width: 90%;
+  }
+  #create{
+    width: 90%;
+  }
+  #sort{
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  #result{
+    width: 70%;
+  }
+  #create{
+    width: 70%;
+  }
+  #sort{
+    width: 70%;
+  }
 }
