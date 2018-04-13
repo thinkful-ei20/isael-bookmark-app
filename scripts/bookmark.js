@@ -33,7 +33,7 @@ const Bookmark = (function(){
           </form>
           <section role="region" class="test">
           <a href="${bookmark.url}"><button type="button">Visit Link</button></a>
-          <button class="delete">Delete ${bookmark.title}</button>
+          <button class="delete" type="button">Delete ${bookmark.title}</button>
           </section>
         </section>
       </section>

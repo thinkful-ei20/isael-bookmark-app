@@ -15,14 +15,17 @@
   <main role="main">
     <section id="create" role="region">
       <form id="create-new-bookmark">
-        <label for="title">Title:</label>
-        <input type="text" name="title" id="create-title" required>
-        <label for="url">Url:</label>
-        <input type="text" name="url" id="create-url" placeholder="url" value="https://" required>
-        <label for="description">Description:</label>
-        <textarea name="description" id="create-desc" cols="30" rows="10"></textarea>
-        <label for="rating">Rating:</label>
-        <input type="number" name="rating" id="create-rating" placeholder="1-5">
+        <fieldset name="bookmark-info">
+            <legend>Create Bookmark</legend>
+            <label for="title">Title:</label>
+            <input type="text" name="title" id="create-title" required>
+            <label for="url">Url:</label>
+            <input type="text" name="url" id="create-url" placeholder="url" value="https://" required>
+            <label for="description">Description:</label>
+            <textarea name="description" id="create-desc" cols="30" rows="10"></textarea>
+            <label for="rating">Rating:</label>
+            <input type="number" name="rating" id="create-rating" placeholder="1-5">
+        </fieldset>
         <button type="submit">Create</button>
       </form>
     </section>

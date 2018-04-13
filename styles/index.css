@@ -19,9 +19,24 @@ label{
   padding: 5px 0px 7.5px 7.5px;
   padding-bottom: 0;
   font-size: 24px;
-  width: 94%;
+  width: 92.5%;
   margin: auto;
   display: block;
+}
+
+legend{
+  padding: 15px 0px 7.5px 7.5px;
+  padding-bottom: 0;
+  font-size: 24px;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  display: block;
+}
+
+fieldset {
+  padding-left: 0;
+  border: none;
 }
 
 header h1{
@@ -48,9 +63,18 @@ header h1{
 #create button{
   display: block;
   padding: 15px;
-  justify-content: flex-end;
   font-size: 32px;
   margin: 15px auto;
+  background-color: #f2f2f2;
+  border: 1px solid;
+  cursor: pointer;
+}
+
+#create button:hover{
+  background-color: #28a745;
+  color: white;
+  border: 1px solid #f2f2f2;
+  transition: 200ms;
 }
 
 .hidden{
@@ -110,7 +134,7 @@ select{
 }
 .view-more{
   margin-left: auto;
-  display: flex;
+  display: block;
   font-size: 18px;
   background-color: #f2f2f2;
   padding: 8px;
