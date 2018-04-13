@@ -6,7 +6,7 @@ const Bookmark = (function(){
     let html = [];
 
     for(let i = 1; i <= val; i++){
-      html.push(`<button class="circles ${rating >= i ? 'rated' : 'unrated'}" data-val="${i}"></button>`);
+      html.push(`<button type="button" class="circles ${rating >= i ? 'rated' : 'unrated'}" data-val="${i}"></button>`);
     }
 
     return html.join('');
@@ -18,24 +18,25 @@ const Bookmark = (function(){
     let desc = bookmark.desc === '' ? `describe ${bookmark.title}` : bookmark.desc;
     let hidden = bookmark.isClicked === true ? '' : 'hidden';
     let circles = generateCirclesFill(5,rating);
+    let moreLess = bookmark.isClicked === true ? 'Less' : 'More';
 
     return `
-      <div class="bookmark-card" data-id="${bookmark.id}">
+      <section role="region" class="bookmark-card" data-id="${bookmark.id}">
         <h3>Title: ${bookmark.title}</h3>
-        <section class="rating-section">${circles}</section>
-        <button class="view-more">Click to view More</button>
-        <div class="hidden-area ${hidden}">
+        <section role="region" class="rating-section">${circles}</section>
+        <button class="view-more">Click to view ${moreLess}</button>
+        <section role="region" class="hidden-area ${hidden}">
           <form class="change-desc">
             <label for="description">Description:</label>
             <textarea name="description" id="create-desc" cols="30" rows="10">${desc}</textarea>
             <button type="submit">Change Description</button>
           </form>
-          <section class="test">
+          <section role="region" class="test">
           <a href="${bookmark.url}"><button type="button">Visit Link</button></a>
           <button class="delete">Delete ${bookmark.title}</button>
           </section>
-        </div>
-      </div>
+        </section>
+      </section>
     `;
   };
 
