@@ -60,6 +60,13 @@ header h1{
   margin: auto;
 }
 
+#create-rating{
+  width: 10%;
+  margin: 0;
+  margin-left: 4%;
+  margin-top: 2px;
+}
+
 #create button{
   display: block;
   padding: 15px;
